@@ -1,6 +1,8 @@
 package dev.canuk790.tilegame.entities.creatures;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class Player extends Creature{

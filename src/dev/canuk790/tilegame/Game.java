@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.canuk790.tilegame.display.Display;
+import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.states.GameState;
 import dev.canuk790.tilegame.states.MenuState;
@@ -20,6 +21,8 @@ public class Game implements Runnable{
 	private Display display;
 	public int width,height;
 	public String title;
+	
+	public InputHandler input;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -40,10 +43,12 @@ public class Game implements Runnable{
 		this.title = title;
 	}
 	
-	private void init(){
+	private void init(){		
 		// initializes graphics
 		display = new Display(title, width, height);
 		Assets.init();
+		
+		input = new InputHandler(display.canvas);
 		
 		menuState = new MenuState();
 		settingsState = new SettingsState();
