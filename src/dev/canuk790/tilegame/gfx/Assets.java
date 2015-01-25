@@ -26,6 +26,8 @@ public class Assets {
 	public static BufferedImage potionRed, potionGreen, potionBlue;
 	// chests and doors
 	public static BufferedImage chestLocked, chestOpen, chestClosed, doorClosed, doorOpen, doorLocked;
+	// Menu Buttons
+	public static BufferedImage buttonStart, buttonSettings;
 	
 	// Font
 	public static BufferedImage[] font = new BufferedImage[48];
@@ -120,6 +122,10 @@ public class Assets {
 		chestLocked = 	sheet.crop(width*3, height*7, width, height);
 		chestOpen = 	sheet.crop(width*4, height*7, width, height);
 		chestClosed = 	sheet.crop(width*5, height*7, width, height);
+		
+		// Menu buttons
+		buttonStart =	sheet.crop(width*0, height*11, width*4, height*2);
+		buttonSettings= sheet.crop(width*4, height*11, width*4, height*2);
 		
 		// Font
 		for (int i = 0; i < 16; i++){

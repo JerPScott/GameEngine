@@ -20,4 +20,11 @@ public abstract class State {
 	
 	public abstract void render(Graphics g);
 	
+	// input handling by states
+	public abstract void inputSpace();
+	public abstract void inputLeft();
+	public abstract void inputRight();
+	public abstract void inputUp();
+	public abstract void inputDown();
+	
 }

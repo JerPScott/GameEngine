@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import dev.canuk790.tilegame.states.State;
+
 public class InputHandler implements KeyListener {
 	
 	public InputHandler(Canvas canvas){
@@ -17,22 +19,27 @@ public class InputHandler implements KeyListener {
         case KeyEvent.VK_SPACE:
         	// call object methods that happen when key is pressed
         	System.out.println("SPACEBAR");
+        	State.getState().inputSpace();
         	break;
         case KeyEvent.VK_LEFT:
         	// call object methods that happen when key is pressed
         	System.out.println("LEFT");
+        	State.getState().inputLeft();
         	break;
         case KeyEvent.VK_RIGHT:
         	// call object methods that happen when key is pressed
         	System.out.println("RIGHT");
+        	State.getState().inputRight();
         	break;
         case KeyEvent.VK_UP:
         	// call object methods that happen when key is pressed
         	System.out.println("UP");
+        	State.getState().inputUp();
         	break;
         case KeyEvent.VK_DOWN:
         	// call object methods that happen when key is pressed
         	System.out.println("DOWN");
+        	State.getState().inputDown();
         	break;
 		}
 	}

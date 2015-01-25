@@ -54,7 +54,7 @@ public class Game implements Runnable{
 		menuState = new MenuState();
 		settingsState = new SettingsState();
 		gameState = new GameState();
-		State.setState(gameState);
+		State.setState(menuState);
 	}
 	
 	private void tick(){
@@ -122,7 +122,7 @@ public class Game implements Runnable{
 		}
 		
 		stop();
-	}
+	}	
 	
 	public synchronized void start(){
 		// synchronized helps with stability when working directly with threads
