@@ -19,7 +19,7 @@ public class Game implements Runnable{
 	 */
 	
 	private Display display;
-	public int width,height;
+	public int width, height, scale;
 	public String title;
 	
 	public InputHandler input;
@@ -37,15 +37,16 @@ public class Game implements Runnable{
 	private State settingsState;
 	private State gameState;
 	
-	public Game(String title, int width, int height){
+	public Game(String title, int width, int height, int scale){
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		this.scale = scale;
 	}
 	
 	private void init(){		
 		// initializes graphics
-		display = new Display(title, width, height);
+		display = new Display(title, width*scale, height*scale);
 		Assets.init();
 		
 		input = new InputHandler(display.canvas);
@@ -75,7 +76,7 @@ public class Game implements Runnable{
 		g = bs.getDrawGraphics();	// used to draw things on the canvas
 		
 		// clear screen
-		g.clearRect(0, 0, width, height);	// clears a portion of the screen
+		g.clearRect(0, 0, width*scale, height*scale);	// clears a portion of the screen
 		// Draw here
 		
 		if(State.getState() != null)

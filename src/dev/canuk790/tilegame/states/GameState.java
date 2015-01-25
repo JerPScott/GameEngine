@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
+import dev.canuk790.tilegame.gfx.Font;
 
 public class GameState extends State{
 
@@ -21,6 +22,7 @@ public class GameState extends State{
 	@Override
 	public void render(Graphics g) {
 		player.render(g);
+		Font.render("0000,0000,0000,0000,0000,0000,0000,0000,0000,", g, 0, 0);
 	}
 
 }
