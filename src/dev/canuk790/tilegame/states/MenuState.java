@@ -2,6 +2,7 @@ package dev.canuk790.tilegame.states;
 
 import java.awt.Graphics;
 
+import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.audio.AudioPlayer;
 import dev.canuk790.tilegame.gfx.Assets;
 
@@ -62,16 +63,18 @@ public class MenuState extends State{
 		g.drawImage(Assets.buttonSettings, 8*32, 10*32, null);
 		// draw the coin to show which button is selected
 		if (selection == 0){
-			g.drawImage(Assets.coinMoney, 6*32, 7*32, null);
+			g.drawImage(Assets.coinMoney, 6*32, 10*32, null);
 		}
 		if (selection == 1){
-			g.drawImage(Assets.coinMoney, 6*32, 10*32, null);
+			g.drawImage(Assets.coinMoney, 6*32, 7*32, null);
 		}
 
 	}
 	
 	private void launchState(int selection){
 		// launch the state that is selected
+		onClose();
+		Game.manageState(selection+1);
 	}
 	
 	private void toggleState(){
@@ -90,7 +93,6 @@ public class MenuState extends State{
 	@Override
 	public void inputLeft() {
 		toggleState();
-		System.out.println(selection); // debug output
 	}
 
 	@Override

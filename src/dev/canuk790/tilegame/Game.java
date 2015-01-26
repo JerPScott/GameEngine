@@ -33,9 +33,9 @@ public class Game implements Runnable{
 	// States
 	// note: has to be declared as state but initialized as game state
 	// -> from extends State.
-	private State menuState;
-	private State settingsState;
-	private State gameState;
+	private static State menuState;
+	private static State settingsState;
+	private static State gameState;
 	
 	public Game(String title, int width, int height, int scale){
 		this.width = width;
@@ -55,6 +55,16 @@ public class Game implements Runnable{
 		settingsState = new SettingsState();
 		gameState = new GameState();
 		State.setState(menuState);
+	}
+	
+	public static void manageState(int selection){
+		// starts up a new state by calling Sate.setState() 
+		// this is used so that all the state managing comes through Game
+		switch (selection){
+		case(0): State.setState(menuState);
+		case(1): State.setState(settingsState);
+		case(2): State.setState(gameState);
+		}
 	}
 	
 	private void tick(){
