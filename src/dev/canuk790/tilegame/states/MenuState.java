@@ -9,10 +9,12 @@ public class MenuState extends State{
 	
 	private boolean wave;
 	private int tickCount;
+	private int selection;
 	
 	public MenuState(){
 		wave = false;
 		tickCount = 0;
+		selection = 0;
 		AudioPlayer.playSound();
 	}
 	
@@ -58,32 +60,52 @@ public class MenuState extends State{
 		// draw the buttons
 		g.drawImage(Assets.buttonStart, 8*32, 7*32, null);
 		g.drawImage(Assets.buttonSettings, 8*32, 10*32, null);
+		// draw the coin to show which button is selected
+		if (selection == 0){
+			g.drawImage(Assets.coinMoney, 6*32, 7*32, null);
+		}
+		if (selection == 1){
+			g.drawImage(Assets.coinMoney, 6*32, 10*32, null);
+		}
 
+	}
+	
+	private void launchState(int selection){
+		// launch the state that is selected
+	}
+	
+	private void toggleState(){
+		if (selection == 0){
+			selection = 1;
+		}else if (selection == 1){
+			selection = 0;
+		}
 	}
 
 	@Override
 	public void inputSpace() {
-		
+		launchState(selection);
 	}
 
 	@Override
 	public void inputLeft() {
-		
+		toggleState();
+		System.out.println(selection); // debug output
 	}
 
 	@Override
 	public void inputRight() {
-		
+		toggleState();
 	}
 
 	@Override
 	public void inputUp() {
-		
+		toggleState();
 	}
 
 	@Override
 	public void inputDown() {
-		
+		toggleState();
 	}
 
 }
