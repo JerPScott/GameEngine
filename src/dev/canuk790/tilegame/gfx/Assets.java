@@ -1,10 +1,16 @@
 package dev.canuk790.tilegame.gfx;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Assets {
 	
 	private static final int width = 32, height = 32;
+	
+	/*Audio*/
+	public static File menuTheme;
+	
+	/*Images*/
 	
 	// characters
 	public static BufferedImage playerFront, playerBack, playerLeft, playerRight;
@@ -32,16 +38,14 @@ public class Assets {
 	// Font
 	public static BufferedImage[] font = new BufferedImage[48];
 	
-	/* Not needed right now
-	// Numbers
-	public static BufferedImage num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9;
-	// Letters
-	public static BufferedImage A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
-	// Symbols
-	public static BufferedImage symbPeriod, symbColon, symbExlamation, symbQuestion, symbLBracket, symbRBracket;
-	*/
-	
 	public static void init(){
+		
+		/*Audio*/
+		
+		menuTheme = new File("res/audio/Menu_Theme_converted.wav").getAbsoluteFile();
+		
+		/*Images*/
+		
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
 		
 		// crop all the tiles

@@ -2,6 +2,7 @@ package dev.canuk790.tilegame.states;
 
 import java.awt.Graphics;
 
+import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.gfx.Font;
@@ -26,8 +27,7 @@ public class GameState extends State{
 
 	@Override
 	public void inputSpace() {
-		// TODO Auto-generated method stub
-		
+		Game.manageState(0);	// for now space exits back to menu		
 	}
 
 	@Override
@@ -50,6 +50,18 @@ public class GameState extends State{
 
 	@Override
 	public void inputDown() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onOpen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onClose() {
 		// TODO Auto-generated method stub
 		
 	}

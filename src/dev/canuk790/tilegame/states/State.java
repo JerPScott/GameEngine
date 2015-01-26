@@ -16,8 +16,12 @@ public abstract class State {
 		return currentState;
 	}
 	
-	public abstract void tick();
+	// on methods
+	public abstract void onOpen();
+	public abstract void onClose();
 	
+	// ticking and rendering
+	public abstract void tick();
 	public abstract void render(Graphics g);
 	
 	// input handling by states

@@ -55,16 +55,22 @@ public class Game implements Runnable{
 		settingsState = new SettingsState();
 		gameState = new GameState();
 		State.setState(menuState);
+		State.getState().onOpen();
 	}
 	
 	public static void manageState(int selection){
+		State.getState().onClose();
 		// starts up a new state by calling Sate.setState() 
 		// this is used so that all the state managing comes through Game
 		switch (selection){
 		case(0): State.setState(menuState);
+			break;
 		case(1): State.setState(settingsState);
+			break;
 		case(2): State.setState(gameState);
+			break;
 		}
+		State.getState().onOpen();
 	}
 	
 	private void tick(){

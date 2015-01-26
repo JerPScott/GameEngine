@@ -8,15 +8,19 @@ import dev.canuk790.tilegame.gfx.Assets;
 
 public class MenuState extends State{
 	
-	private boolean wave;
-	private int tickCount;
+	private boolean wave;	// boolean used for animation
+	private int tickCount;	// counter used for animation
 	private int selection;
 	
 	public MenuState(){
-		wave = false;
-		tickCount = 0;
-		selection = 0;
-		AudioPlayer.playSound();
+		wave = false;	
+		tickCount = 0;	
+		selection = 1;	// initialize selection to Start
+	}
+	
+	@Override
+	public void onOpen() {
+		AudioPlayer.playSound(Assets.menuTheme);
 	}
 	
 	public void onClose(){
@@ -40,9 +44,10 @@ public class MenuState extends State{
 				g.drawImage(Assets.grassLight1, i*32, k*32, null);
 			}
 		}
-		// draw a tree border
+		// draw a tree border and player figure
 		if (wave){
 			for (int i = 0; i < 20; i++){
+				g.drawImage(Assets.playerLeft, 5*32, 2*32, null);
 				g.drawImage(Assets.treeRightDark, i*32, 0*32, null);
 				g.drawImage(Assets.treeRightDark, i*32, 14*32, null);
 				g.drawImage(Assets.treeLeftDark, 0*32, i*32, null);
@@ -50,14 +55,13 @@ public class MenuState extends State{
 			}
 		}else{
 			for (int i = 0; i < 20; i++){
+				g.drawImage(Assets.playerRight, 5*32, 2*32, null);
 				g.drawImage(Assets.treeLeftDark, i*32, 0*32, null);
 				g.drawImage(Assets.treeLeftDark, i*32, 14*32, null);
 				g.drawImage(Assets.treeRightDark, 0*32, i*32, null);
 				g.drawImage(Assets.treeRightDark, 19*32, i*32, null);
 			}
 		}
-		// draw the player
-		g.drawImage(Assets.playerFront, 5*32, 2*32, null);
 		// draw the buttons
 		g.drawImage(Assets.buttonStart, 8*32, 7*32, null);
 		g.drawImage(Assets.buttonSettings, 8*32, 10*32, null);
@@ -73,7 +77,6 @@ public class MenuState extends State{
 	
 	private void launchState(int selection){
 		// launch the state that is selected
-		onClose();
 		Game.manageState(selection+1);
 	}
 	

@@ -8,14 +8,13 @@ import javax.sound.sampled.Clip;
 
 public class AudioPlayer {
 	
-	private static File song= new File("res/audio/Menu_Theme_converted.wav").getAbsoluteFile();
 	private static Clip clip;
 	
 	public AudioPlayer(){
 		
 	}
 
-	public static void playSound() {
+	public static void playSound(File song) {
 	    try {
 	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(song);
 	        clip = AudioSystem.getClip();
