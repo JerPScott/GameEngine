@@ -1,6 +1,6 @@
 # Adventure_TileGame
 
-This is my project to build a tile based adventure RPG game.
+This is my project to build a tile based adventure game.
 
 Menu Theme music:
 	name	- Happy 8bit Pixel Adventure
