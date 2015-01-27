@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.audio.AudioPlayer;
 import dev.canuk790.tilegame.gfx.Assets;
+import dev.canuk790.tilegame.gfx.MyButton;
 
 public class MenuState extends State{
 	
@@ -63,8 +64,8 @@ public class MenuState extends State{
 			}
 		}
 		// draw the buttons
-		g.drawImage(Assets.buttonStart, 8*32, 7*32, null);
-		g.drawImage(Assets.buttonSettings, 8*32, 10*32, null);
+		MyButton.drawButton("Start", g, 8*32, 7*32);
+		MyButton.drawButton("Settings", g, 8*32, 10*32);
 		// draw the coin to show which button is selected
 		if (selection == 0){
 			g.drawImage(Assets.coinMoney, 6*32, 10*32, null);

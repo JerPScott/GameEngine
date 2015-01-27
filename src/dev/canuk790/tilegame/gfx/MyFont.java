@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import dev.canuk790.tilegame.gfx.Assets;
 
-public class Font {
+public class MyFont {
 
 	private static String chars = "" +
 								"0123456789#     " +

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
-import dev.canuk790.tilegame.gfx.Font;
+import dev.canuk790.tilegame.gfx.MyFont;
 
 public class GameState extends State{
 

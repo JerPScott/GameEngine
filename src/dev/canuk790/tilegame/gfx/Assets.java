@@ -33,7 +33,7 @@ public class Assets {
 	// chests and doors
 	public static BufferedImage chestLocked, chestOpen, chestClosed, doorClosed, doorOpen, doorLocked;
 	// Menu Buttons
-	public static BufferedImage buttonStart, buttonSettings;
+	public static BufferedImage buttonBlank;
 	
 	// Font
 	public static BufferedImage[] font = new BufferedImage[48];
@@ -128,8 +128,7 @@ public class Assets {
 		chestClosed = 	sheet.crop(width*5, height*7, width, height);
 		
 		// Menu buttons
-		buttonStart =	sheet.crop(width*0, height*11, width*4, height*2);
-		buttonSettings= sheet.crop(width*4, height*11, width*4, height*2);
+		buttonBlank =	sheet.crop(width*0, height*11, width*4, height*2);
 		
 		// Font
 		for (int i = 0; i < 16; i++){
