@@ -5,14 +5,13 @@ import java.awt.Graphics;
 import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
-import dev.canuk790.tilegame.gfx.MyFont;
 
 public class GameState extends State{
 
-	private Player player;
+	private Player player;	
 	
 	public GameState(){
-		player = new Player(0, 32, Assets.playerFront);
+		player = new Player(0, 0, Assets.playerFront);
 	}
 	
 	@Override
@@ -32,38 +31,30 @@ public class GameState extends State{
 
 	@Override
 	public void inputLeft() {
-		// TODO Auto-generated method stub
-		
+		player.moveLeft();
 	}
 
 	@Override
 	public void inputRight() {
-		// TODO Auto-generated method stub
-		
+		player.moveRight();
 	}
 
 	@Override
 	public void inputUp() {
-		// TODO Auto-generated method stub
-		
+		player.moveUp();
 	}
 
 	@Override
 	public void inputDown() {
-		// TODO Auto-generated method stub
-		
+		player.moveDown();
 	}
 
 	@Override
 	public void onOpen() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onClose() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

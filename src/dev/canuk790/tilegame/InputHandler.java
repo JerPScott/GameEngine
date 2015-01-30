@@ -4,8 +4,6 @@ import java.awt.Canvas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
-
 import dev.canuk790.tilegame.states.State;
 
 public class InputHandler implements KeyListener {

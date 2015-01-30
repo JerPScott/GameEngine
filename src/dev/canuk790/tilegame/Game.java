@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.canuk790.tilegame.display.Display;
-import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.states.GameState;
 import dev.canuk790.tilegame.states.MenuState;

@@ -5,8 +5,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import dev.canuk790.tilegame.entities.creatures.Player;
-
 public class Display {
 	/* This class controls the display output of the game 
 	 * with a JFrame */
