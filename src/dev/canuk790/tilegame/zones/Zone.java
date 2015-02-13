@@ -1,5 +1,6 @@
 package dev.canuk790.tilegame.zones;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import dev.canuk790.tilegame.gfx.Assets;
@@ -15,88 +16,109 @@ public class Zone {
 	*/
 	
 	// Holds the buffered images to draw the zone background
-	public BufferedImage[][] background = new BufferedImage[20][15];
+	private BufferedImage[][] background = new BufferedImage[20][15];
 	
 	// An array that holds a 0 for an open space and a 1 for a blocked space
 	// spaces that are blocked cannot contain another entity
-	public Boolean[][] isBlocked = new Boolean[20][15];
+	public boolean[][] isBlocked = new boolean[20][15];
 	
-	public Zone(int[][] imageCodes, int passageLeft, int passageRight, int passageUp, int passageDown){
+	private int difficulty, x, y;
+	
+	public Zone(int[][] imageCodes, boolean[][] blockedCodes, int d){
+		
+		difficulty = d;
 		
 		for (int i=0; i<20; i++){
 			for(int k=0; k<15; k++){
-				//block all outer tiles
-				if ((i==0)||(i==19)||(k==0)||(k==14)){
-					isBlocked[i][k] = true; 
-				}else{
-					isBlocked[i][k] = false;
-				}
+				
+				// set the blocked tiles
+				isBlocked = blockedCodes;
+				
 				// build the array of images to be drawn upon entering the zone
+				//
+				// 1 == light grass
+				// 2 == dark grass
+				// 3 == light rock
+				// 4 == dark rock
+				// 5 == light dirt/sand
+				// 6 == water
+				//
 				switch (imageCodes[i][k]){
-					case 0:
-						if (Math.random() < 0.5){
+					case 1:
+						if (Math.random() < 0.8){
 							background[i][k] = Assets.grassLight1;
 						}else{
 							background[i][k] = Assets.grassLight2;
 						}
 						break;
-					case 1:
-						if (Math.random() < 0.5){
+					case 2:
+						if (Math.random() < 0.8){
 							background[i][k] = Assets.grassDark1;
 						}else{
 							background[i][k] = Assets.grassDark2;
 						}
 						break;
-					case 2:
-						if (Math.random() < 0.5){
+					case 3:
+						if (Math.random() < 0.8){
 							background[i][k] = Assets.rockLight1;
 						}else{
 							background[i][k] = Assets.rockLight2;
 						}
 						break;
-					case 3:
-						if (Math.random() < 0.5){
+					case 4:
+						if (Math.random() < 0.8){
 							background[i][k] = Assets.rockDark1;
 						}else{
 							background[i][k] = Assets.rockDark2;
 						}
 						break;
-					case 4:
-						if (Math.random() < 0.5){
+					case 5:
+						if (Math.random() < 0.8){
 							background[i][k] = Assets.dirtLight1;
 						}else{
 							background[i][k] = Assets.dirtLight2;
 						}
 						break;
-					case 5:
-						if (Math.random() < 0.5){
-							background[i][k] = Assets.dirtDark1;
-						}else{
-							background[i][k] = Assets.dirtDark2;
-						}
-						break;
 					case 6:
-						if (Math.random() < 0.5){
-							background[i][k] = Assets.treeRightLight;
+						if (Math.random() < 0.8){
+							background[i][k] = Assets.water1;
 						}else{
-							background[i][k] = Assets.treeLeftLight;
+							background[i][k] = Assets.water2;
 						}
 						break;
 					case 7:
 						if (Math.random() < 0.5){
-							background[i][k] = Assets.treeRightDark;
+							background[i][k] = Assets.treeLeftLight;
 						}else{
+							background[i][k] = Assets.treeRightLight;
+						}
+						break;
+					case 8:
+						if (Math.random() < 0.5){
 							background[i][k] = Assets.treeLeftDark;
+						}else{
+							background[i][k] = Assets.treeRightDark;
 						}
 						break;
 				}
 			}
 		}
-		
-		// unblock the space that the player can walk through to get to the next stage
-		isBlocked[0][passageLeft] = false;
-		isBlocked[19][passageRight] = false;
-		isBlocked[passageUp][0] = false;
-		isBlocked[passageDown][14] = false;
 	}
+	
+	public void tick(){
+		
+	}
+	
+	public void render(Graphics g){
+		x = 0;
+		for (BufferedImage[] v : background){
+			y = 0;
+			for (BufferedImage I : v){
+				g.drawImage(I, x*32, y*32, null);
+				y++;
+			}
+			x++;
+		}
+	}
+	
 }

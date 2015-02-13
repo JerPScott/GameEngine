@@ -21,7 +21,7 @@ public class Assets {
 	// Light environment tiles
 	public static BufferedImage grassLight1, grassLight2, rockLight1, rockLight2, dirtLight1, dirtLight2, treeRightLight, treeLeftLight;
 	// Dark environment tiles
-	public static BufferedImage grassDark1, grassDark2, rockDark1, rockDark2, dirtDark1, dirtDark2, treeRightDark, treeLeftDark;
+	public static BufferedImage grassDark1, grassDark2, rockDark1, rockDark2, water1, water2, treeRightDark, treeLeftDark;
 	// baddies tiles
 	public static BufferedImage snakeBrown, snakeRed, snakeBlue, ratGrey, ratBrown, ratRed, spiderBrown, spiderBlack, slimeGreen, slimeOrange, slimePurple, slimeBlue;
 	// collectables
@@ -83,8 +83,8 @@ public class Assets {
 		grassDark2 = 	sheet.crop(width*1, height*3, width, height);
 		rockDark1 = 	sheet.crop(width*2, height*3, width, height);
 		rockDark2 = 	sheet.crop(width*3, height*3, width, height);
-		dirtDark1 = 	sheet.crop(width*4, height*3, width, height);
-		dirtDark2 = 	sheet.crop(width*5, height*3, width, height);
+		water1 = 		sheet.crop(width*4, height*3, width, height);
+		water2 = 		sheet.crop(width*5, height*3, width, height);
 		treeRightDark = sheet.crop(width*6, height*3, width, height);
 		treeLeftDark = 	sheet.crop(width*7, height*3, width, height);
 		

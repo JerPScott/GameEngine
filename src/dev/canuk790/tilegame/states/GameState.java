@@ -14,48 +14,48 @@ public class GameState extends State{
 	private ZoneHandler zoneHandler;
 	
 	public GameState(){
-		player = new Player(0, 0, Assets.playerFront);
+		player = new Player(1*32, 1*32, Assets.playerFront);
 		zoneHandler = new ZoneHandler();
 	}
 	
 	@Override
 	public void tick() {
+		zoneHandler.getActiveZone().tick();
 		player.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		for (int i = 0; i<20; i++){
-			for (int k = 0; k<15; k++){
-				g.drawImage(zoneHandler.testZone.background[i][k], i*32, k*32, null);
-			}
-		}
+		zoneHandler.getActiveZone().render(g);
 		player.render(g);
 	}
 
 	@Override
 	public void inputSpace() {
-		Game.manageState(0);	// for now space exits back to menu		
+		if ((player.getX() == 0*32 || player.getX() == 19*32 || player.getY() == 0*32 || player.getY() == 14*32)){
+			zoneHandler.switchZone(player);
+		}
+		player.interact(zoneHandler.getActiveZone());
 	}
 
 	@Override
 	public void inputLeft() {
-		player.moveLeft();
+		player.moveLeft(zoneHandler.getActiveZone());
 	}
 
 	@Override
 	public void inputRight() {
-		player.moveRight();
+		player.moveRight(zoneHandler.getActiveZone());
 	}
 
 	@Override
 	public void inputUp() {
-		player.moveUp();
+		player.moveUp(zoneHandler.getActiveZone());
 	}
 
 	@Override
 	public void inputDown() {
-		player.moveDown();
+		player.moveDown(zoneHandler.getActiveZone());
 	}
 
 	@Override

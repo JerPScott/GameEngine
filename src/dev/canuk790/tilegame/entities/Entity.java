@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 public abstract class Entity {
 	
 	// protected means accessible from this class and classes that extend it
-	protected float x, y; 
+	protected int x, y; 
 	protected BufferedImage texture;
 	
-	public Entity(float x, float y, BufferedImage texture){
+	public Entity(int x, int y, BufferedImage texture){
 		this.x = x;
 		this.y = y;
 		this.texture = texture;
