@@ -79,8 +79,8 @@ public class Assets {
 		treeLeftLight = sheet.crop(width*7, height*2, width, height);
 		
 		// dark environments
-		grassDark1 = 	sheet.crop(width*0, height*3, width, height);
-		grassDark2 = 	sheet.crop(width*1, height*3, width, height);
+		grassDark2 = 	sheet.crop(width*0, height*3, width, height);
+		grassDark1 = 	sheet.crop(width*1, height*3, width, height);
 		rockDark1 = 	sheet.crop(width*2, height*3, width, height);
 		rockDark2 = 	sheet.crop(width*3, height*3, width, height);
 		water1 = 		sheet.crop(width*4, height*3, width, height);
