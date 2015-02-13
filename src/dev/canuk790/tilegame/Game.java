@@ -9,6 +9,7 @@ import dev.canuk790.tilegame.states.GameState;
 import dev.canuk790.tilegame.states.MenuState;
 import dev.canuk790.tilegame.states.SettingsState;
 import dev.canuk790.tilegame.states.State;
+import dev.canuk790.tilegame.tiles.Tiles;
 
 public class Game implements Runnable{
 
@@ -47,6 +48,7 @@ public class Game implements Runnable{
 		// initializes graphics
 		display = new Display(title, width*scale, height*scale);
 		Assets.init();
+		Tiles.init();
 		
 		input = new InputHandler(display.canvas);
 		
