@@ -11,8 +11,7 @@ public class ZoneHandler {
 	private int zoneDifficulties[][] = new int[3][3];
 	private int zoneIndexX, zoneIndexY, playerX, playerY;
 	
-	boolean[][] blockedCodes = new boolean[20][15];
-	int[][] imageCodes = new int[20][15];
+	int[][] tileCodes = new int[20][15];
 	
 	public ZoneHandler(){
 		
@@ -28,7 +27,7 @@ public class ZoneHandler {
 		
 		for (int i = 0; i < 3; i++){
 			for (int j = 0; j < 3; j++){
-				zones[i][j] = new Zone(imageCodes, blockedCodes, zoneTypes[i][j], 1);
+				zones[i][j] = new Zone(tileCodes, zoneTypes[i][j], 1);
 			}
 		}
 		

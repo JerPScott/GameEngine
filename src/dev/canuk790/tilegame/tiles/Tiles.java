@@ -28,6 +28,9 @@ public class Tiles {
 	public static Tile water1Tile;
 	public static Tile water2Tile;
 	
+	public static Tile wall1Tile;
+	public static Tile wall2Tile;
+	
 	public static void init(){
 		
 		grassLight1Tile = new Tile(Assets.grassLight1, false);
@@ -53,6 +56,9 @@ public class Tiles {
 		
 		water1Tile = new Tile(Assets.water1, true);
 		water2Tile = new Tile(Assets.water2, true);
+		
+		wall1Tile = new Tile(Assets.castleSmall, true);
+		wall2Tile = new Tile(Assets.castleBig, true);
 	
 	}
 

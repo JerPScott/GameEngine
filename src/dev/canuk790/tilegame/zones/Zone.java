@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import dev.canuk790.tilegame.gfx.Assets;
+import dev.canuk790.tilegame.tiles.Tile;
+import dev.canuk790.tilegame.tiles.Tiles;
 
 public class Zone {
 	/* 
@@ -15,17 +17,13 @@ public class Zone {
 	 * 
 	*/
 	
-	// Holds the buffered images to draw the zone background
-	private BufferedImage[][] background = new BufferedImage[20][15];
-	private BufferedImage defaultTile1, defaultTile2;
-	
-	// An array that holds a 0 for an open space and a 1 for a blocked space
-	// spaces that are blocked cannot contain another entity
-	public boolean[][] isBlocked = new boolean[20][15];
+	// try an implementation with Tiles that combines the blocked variables and the 
+	public Tile[][] tiles = new Tile[20][15];
+	private Tile defaultTile1, defaultTile2, blockedTile1, blockedTile2;
 	
 	private int difficulty, x, y;
 	
-	public Zone(int[][] imageCodes, boolean[][] blockedCodes, int type, int d){
+	public Zone(int[][] tileCodes, int type, int d){
 		
 		difficulty = d;
 		
@@ -40,28 +38,40 @@ public class Zone {
 		//
 		switch (type){
 		case 1: //beach
-			defaultTile1 = Assets.dirtLight1;
-			defaultTile2 = Assets.dirtLight2;
+			defaultTile1 = Tiles.dirtLight1Tile;
+			defaultTile2 = Tiles.dirtLight2Tile;
+			blockedTile1 = Tiles.water1Tile;
+			blockedTile2 = Tiles.water2Tile;
 			break;
 		case 2: //forest
-			defaultTile1 = Assets.grassDark1;
-			defaultTile2 = Assets.grassDark2;
+			defaultTile1 = Tiles.grassDark1Tile;
+			defaultTile2 = Tiles.grassDark2Tile;
+			blockedTile1 = Tiles.treeDarkLeftTile;
+			blockedTile2 = Tiles.treeDarkRightTile;
 			break;
 		case 3: //grassland
-			defaultTile1 = Assets.grassLight1;
-			defaultTile2 = Assets.grassLight2;
+			defaultTile1 = Tiles.grassLight1Tile;
+			defaultTile2 = Tiles.grassLight2Tile;
+			blockedTile1 = Tiles.treeLightLeftTile;
+			blockedTile2 = Tiles.treeLightRightTile;
 			break;
 		case 4: //mountain
-			defaultTile1 = Assets.rockLight1;
-			defaultTile2 = Assets.rockLight2;
+			defaultTile1 = Tiles.rockLight1Tile;
+			defaultTile2 = Tiles.rockLight2Tile;
+			blockedTile1 = Tiles.treeDarkLeftTile;
+			blockedTile2 = Tiles.treeDarkRightTile;
 			break;
 		case 5: //town
-			defaultTile1 = Assets.dirtLight1;
-			defaultTile2 = Assets.dirtLight2;
+			defaultTile1 = Tiles.dirtLight1Tile;
+			defaultTile2 = Tiles.dirtLight2Tile;
+			blockedTile1 = Tiles.wall1Tile;
+			blockedTile2 = Tiles.wall2Tile;
 			break;
 		case 6: //cave
-			defaultTile1 = Assets.rockDark1;
-			defaultTile2 = Assets.rockDark2;
+			defaultTile1 = Tiles.rockDark1Tile;
+			defaultTile2 = Tiles.rockDark2Tile;
+			blockedTile1 = Tiles.water1Tile;
+			blockedTile2 = Tiles.water2Tile;
 			break;
 		}
 		
@@ -76,89 +86,66 @@ public class Zone {
 				// 4 == dark rock
 				// 5 == light dirt/sand
 				//
-				switch (imageCodes[i][k]){
+				switch (tileCodes[i][k]){
 					case 0:
 						if (Math.random() < 0.8){
-							background[i][k] = defaultTile1;
+							tiles[i][k] = defaultTile1;
 						}else{
-							background[i][k] = defaultTile2;
+							tiles[i][k] = defaultTile2;
 						}
 						break;
 					case 1:
 						if (Math.random() < 0.8){
-							background[i][k] = Assets.grassLight1;
+							tiles[i][k] = Tiles.grassLight1Tile;
 						}else{
-							background[i][k] = Assets.grassLight2;
+							tiles[i][k] = Tiles.grassLight2Tile;
 						}
 						break;
 					case 2:
 						if (Math.random() < 0.8){
-							background[i][k] = Assets.grassDark1;
+							tiles[i][k] = Tiles.grassDark1Tile;
 						}else{
-							background[i][k] = Assets.grassDark2;
+							tiles[i][k] = Tiles.grassDark2Tile;
 						}
 						break;
 					case 3:
 						if (Math.random() < 0.8){
-							background[i][k] = Assets.rockLight1;
+							tiles[i][k] = Tiles.rockLight1Tile;
 						}else{
-							background[i][k] = Assets.rockLight2;
+							tiles[i][k] = Tiles.rockLight2Tile;
 						}
 						break;
 					case 4:
 						if (Math.random() < 0.8){
-							background[i][k] = Assets.rockDark1;
+							tiles[i][k] = Tiles.rockDark1Tile;
 						}else{
-							background[i][k] = Assets.rockDark2;
+							tiles[i][k] = Tiles.rockDark2Tile;
 						}
 						break;
 					case 5:
 						if (Math.random() < 0.8){
-							background[i][k] = Assets.dirtLight1;
+							tiles[i][k] = Tiles.dirtLight1Tile;
 						}else{
-							background[i][k] = Assets.dirtLight2;
+							tiles[i][k] = Tiles.dirtLight2Tile;
 						}
 						break;
 				}
 				
 				//block all outer tiles
 				if ((i==0)||(i==19)||(k==0)||(k==14)){
-					isBlocked[i][k] = true;
-				}else{
-					isBlocked[i][k] = false;
-				}
-				
-				if (blockedCodes[i][k]){
-					isBlocked = blockedCodes;
-				}
-				
-				if (isBlocked[i][k]){
-					if (type == 1 || type == 6){
-						if (Math.random() < 0.8){
-							background[i][k] = Assets.water1;
-						}else{
-							background[i][k] = Assets.water2;
-						}
+					if (Math.random() < 0.8){
+						tiles[i][k] = blockedTile1;
 					}else{
-						if (Math.random() < 0.5){
-							background[i][k] = Assets.treeLeftDark;
-						}else{
-							background[i][k] = Assets.treeRightDark;
-						}
+						tiles[i][k] = blockedTile2;
 					}
-				}
-				
+				}				
 			}
 		}
 		
-		background[0][7]= defaultTile1;
-		isBlocked[0][7] = false;
-		background[19][7]= defaultTile1;
-		isBlocked[19][7] = false;
-		background[10][0]= defaultTile1;
-		isBlocked[10][0] = false;
-		background[10][14]= defaultTile1;
-		isBlocked[10][14] = false;
+		tiles[0][7]= defaultTile1;
+		tiles[19][7]= defaultTile1;
+		tiles[10][0]= defaultTile1;
+		tiles[10][14]= defaultTile1;
 	}
 	
 	public void tick(){
@@ -167,10 +154,10 @@ public class Zone {
 	
 	public void render(Graphics g){
 		x = 0;
-		for (BufferedImage[] v : background){
+		for (Tile[] v : tiles){
 			y = 0;
-			for (BufferedImage I : v){
-				g.drawImage(I, x*32, y*32, null);
+			for (Tile I : v){
+				g.drawImage(I.texture, x*32, y*32, null);
 				y++;
 			}
 			x++;
