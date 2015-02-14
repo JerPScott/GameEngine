@@ -38,28 +38,32 @@ public abstract class Creature extends Entity{
 	}
 	
 	// methods for setting pending movement of the creature
+	// also checks if there is anything in the way and ensures that the creature is in a tile before enabling movement
 	public void moveLeft(Zone activeZone){
-		if (x%32==0 && y%32==0 && x>0*32 && !(activeZone.tiles[x/32 - 1][y/32].isBlocked)) // if creature is in a tile, move creature one tile 
+		if (x%32==0 && y%32==0 && x>0*32 && !(activeZone.isBlocked[x/32 - 1][y/32])) // if creature is in a tile, move creature one tile 
 			deltaX = -32;
 	}
 	
 	public void moveRight(Zone activeZone){
-		if (x%32==0 && y%32==0 && x<19*32 && !(activeZone.tiles[x/32 + 1][y/32].isBlocked)) // if creature is in a tile, move creature one tile 
+		if (x%32==0 && y%32==0 && x<19*32 && !(activeZone.isBlocked[x/32 + 1][y/32])) // if creature is in a tile, move creature one tile 
 			deltaX = 32;
 	}
 
 	public void moveUp(Zone activeZone){
-		if (x%32==0 && y%32==0 && y>0*32 && !(activeZone.tiles[x/32][y/32 - 1].isBlocked)) // if creature is in a tile, move creature one tile 
+		if (x%32==0 && y%32==0 && y>0*32 && !(activeZone.isBlocked[x/32][y/32 - 1])) // if creature is in a tile, move creature one tile 
 			deltaY = -32;
 	}
 
 	public void moveDown(Zone activeZone){
-		if (x%32==0 && y%32==0 && y<14*32 && !(activeZone.tiles[x/32][y/32 + 1].isBlocked)) // if creature is in a tile, move creature one tile 
+		if (x%32==0 && y%32==0 && y<14*32 && !(activeZone.isBlocked[x/32][y/32 + 1])) // if creature is in a tile, move creature one tile 
 			deltaY = 32;
 	}
 	
-	public void interact(Zone activeZone){
-		
+	public abstract void attack(Creature target);
+	
+	public void takeDamage(int damage){
+		//decrease the creatures health
+		this.health = this.health - damage;
 	}
 	
 	public int getX(){
@@ -68,6 +72,10 @@ public abstract class Creature extends Entity{
 	
 	public int getY(){
 		return y;
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 	
 	public void setX(int playerX){

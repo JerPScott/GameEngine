@@ -3,6 +3,9 @@ package dev.canuk790.tilegame.zones;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import dev.canuk790.tilegame.entities.creatures.Player;
+import dev.canuk790.tilegame.entities.creatures.enemies.Enemy;
+import dev.canuk790.tilegame.entities.creatures.enemies.Snake;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.tiles.Tile;
 import dev.canuk790.tilegame.tiles.Tiles;
@@ -12,20 +15,32 @@ public class Zone {
 	 * Zones will hold the information for drawing each screen or zone that the player can explore.
 	 * They will also hole information for collision and items/enemies/etc
 	 * 
-	 * Think about making different types of zones have different game mechanics. 
-	 * (mountains caves dessert swap plains forest)
-	 * 
 	*/
 	
 	// try an implementation with Tiles that combines the blocked variables and the 
 	public Tile[][] tiles = new Tile[20][15];
 	private Tile defaultTile1, defaultTile2, blockedTile1, blockedTile2;
 	
+	//keeps track of the tiles player can walk on or not
+	public boolean[][] isBlocked = new boolean[20][15];
+	
 	private int difficulty, x, y;
+	
+	//an array of all the creatures of the zone
+	private Enemy[] enemies;
+	
+	private Player player;
+	
+	//an array of inanimates will need to be added at some point for chests and doors and such
 	
 	public Zone(int[][] tileCodes, int type, int d){
 		
 		difficulty = d;
+		
+		enemies = new Enemy[d];
+		for (int i = 0; i < d; i++){
+			enemies[i] = new Snake(1*32+i, 1*32, Assets.snakeBrown);
+		}
 		
 		// set the default tile
 		//
@@ -142,17 +157,42 @@ public class Zone {
 			}
 		}
 		
+		
+		//open up passage ways to the neighboring zones
 		tiles[0][7]= defaultTile1;
 		tiles[19][7]= defaultTile1;
 		tiles[10][0]= defaultTile1;
 		tiles[10][14]= defaultTile1;
 	}
 	
-	public void tick(){
+	public void tick(Player player){
 		
+		// call the tick method for all the creatures in the zone
+		for (Enemy e: enemies){
+			e.scout(player);
+			e.tick();
+		}
+		
+		//update what tile are or are not passable in the zone
+		for (int i=0; i<20; i++){
+			for(int k=0; k<15; k++){
+				
+				//block off the tiles that contain impassable terrain
+				isBlocked[i][k] = tiles[i][k].isBlocked;
+				
+				//block off the tiles that contain creatures
+				for (Enemy e: enemies){
+					if (i == e.getX()/32 && k == e.getY()/32){
+						isBlocked[i][k] = true;
+					}
+				}
+			}	
+		}
 	}
 	
 	public void render(Graphics g){
+		
+		//render the background tiles
 		x = 0;
 		for (Tile[] v : tiles){
 			y = 0;
@@ -162,6 +202,12 @@ public class Zone {
 			}
 			x++;
 		}
+		
+		//render the creatures in the zone
+		for (Enemy e: enemies){
+			e.render(g);
+		}
+		
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import dev.canuk790.tilegame.display.Display;
 import dev.canuk790.tilegame.gfx.Assets;
+import dev.canuk790.tilegame.states.GameOverState;
 import dev.canuk790.tilegame.states.GameState;
 import dev.canuk790.tilegame.states.MenuState;
 import dev.canuk790.tilegame.states.SettingsState;
@@ -36,6 +37,7 @@ public class Game implements Runnable{
 	private static State menuState;
 	private static State settingsState;
 	private static State gameState;
+	private static State gameOverState;
 	
 	public Game(String title, int width, int height, int scale){
 		this.width = width;
@@ -55,6 +57,7 @@ public class Game implements Runnable{
 		menuState = new MenuState();
 		settingsState = new SettingsState();
 		gameState = new GameState();
+		gameOverState = new GameOverState();
 		State.setState(menuState);
 		State.getState().onOpen();
 	}
@@ -69,6 +72,8 @@ public class Game implements Runnable{
 		case(1): State.setState(settingsState);
 			break;
 		case(2): State.setState(gameState);
+			break;
+		case(3): State.setState(gameOverState);
 			break;
 		}
 		State.getState().onOpen();

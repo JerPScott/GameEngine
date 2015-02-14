@@ -4,6 +4,10 @@ import dev.canuk790.tilegame.gfx.Assets;
 
 public class Tiles {
 	
+	/*
+	 * This class holds the different tile types that are used to construct the explorable zones of the game
+	 */
+	
 	public static Tile grassLight1Tile;
 	public static Tile grassLight2Tile;
 	

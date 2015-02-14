@@ -1,33 +1,39 @@
 package dev.canuk790.tilegame.states;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import dev.canuk790.tilegame.Game;
 import dev.canuk790.tilegame.entities.creatures.Player;
 import dev.canuk790.tilegame.gfx.Assets;
+import dev.canuk790.tilegame.gfx.MyFont;
 import dev.canuk790.tilegame.zones.ZoneHandler;
 
 public class GameState extends State{
 
-	private Player player;	
+	private Player player;
 	private ZoneHandler zoneHandler;
 	
 	public GameState(){
-		player = new Player(1*32, 1*32, Assets.playerFront);
+		player = new Player(10*32, 7*32, Assets.playerFront);
 		zoneHandler = new ZoneHandler();
 	}
 	
 	@Override
 	public void tick() {
-		zoneHandler.getActiveZone().tick();
+		zoneHandler.getActiveZone().tick(player);
 		player.tick();
+		if (player.getHealth() <= 0){
+			Game.manageState(3);
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		zoneHandler.getActiveZone().render(g);
 		player.render(g);
+		
+		// render stats
+		MyFont.render("Health:" + Integer.toString(player.getHealth()), g, 0, 0);
 	}
 
 	@Override
