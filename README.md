@@ -7,4 +7,7 @@ Menu Theme music:
 	creator - edtijo (freesound.org)
 	link	- https://www.freesound.org/people/edtijo/sounds/240376/
 
-Must re-evaluate capsulation
+Player Hit sound:
+	name	- punch 6
+	creator	- CastIronCarousel (freesound.org)
+	link	- https://www.freesound.org/people/CastIronCarousel/sounds/216782/

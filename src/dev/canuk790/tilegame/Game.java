@@ -3,6 +3,7 @@ package dev.canuk790.tilegame;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import dev.canuk790.tilegame.audio.AudioAssets;
 import dev.canuk790.tilegame.display.Display;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.states.GameOverState;
@@ -50,6 +51,7 @@ public class Game implements Runnable{
 		// initializes graphics
 		display = new Display(title, width*scale, height*scale);
 		Assets.init();
+		AudioAssets.init();
 		Tiles.init();
 		
 		input = new InputHandler(display.canvas);

@@ -14,11 +14,6 @@ public abstract class Enemy extends Creature{
 		super(x, y, texture);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public void attack(Creature target) {
-		target.takeDamage(damage);
-	}
 	
 	public abstract void scout(Player player);
 

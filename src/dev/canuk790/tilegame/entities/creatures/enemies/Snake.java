@@ -21,7 +21,7 @@ public class Snake extends Enemy{
 			//if snake is in range of player and has waited long enough since last attack, attack
 			if (attackTimer > 60){
 				attackTimer = 0;
-				attack(player);
+				attack(player, damage);
 			}
 		}else if ((Math.abs(xDiff) < 3) && (Math.abs(yDiff) < 3)){
 			// otherwise check if the snake will move towards the player

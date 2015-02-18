@@ -21,7 +21,6 @@ public class AudioPlayer {
 		        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(song);
 		        clip = AudioSystem.getClip();
 		        clip.open(audioInputStream);
-		        clip.loop(clip.LOOP_CONTINUOUSLY);
 		    } catch(Exception ex) {
 		        System.out.println("Error with playing sound.");
 		        ex.printStackTrace();
@@ -30,6 +29,11 @@ public class AudioPlayer {
 	}
 	
 	public static void stopSound(){
-		clip.close();
+		try{
+			clip.close();
+		}catch(Exception ex) {
+			System.out.println("Error with stopping sound.");
+			ex.printStackTrace();
+		}
 	}
 }

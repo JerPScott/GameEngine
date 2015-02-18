@@ -3,6 +3,7 @@ package dev.canuk790.tilegame.states;
 import java.awt.Graphics;
 
 import dev.canuk790.tilegame.Game;
+import dev.canuk790.tilegame.audio.AudioAssets;
 import dev.canuk790.tilegame.audio.AudioPlayer;
 import dev.canuk790.tilegame.gfx.Assets;
 import dev.canuk790.tilegame.gfx.MyButton;
@@ -21,7 +22,7 @@ public class SettingsState extends State{
 	
 	@Override
 	public void onOpen() {
-		AudioPlayer.playSound(Assets.menuTheme);
+		AudioPlayer.playSound(AudioAssets.menuTheme);
 	}
 	
 	public void onClose(){
@@ -87,7 +88,7 @@ public class SettingsState extends State{
 				AudioPlayer.isOn = !AudioPlayer.isOn;
 			}else if (!AudioPlayer.isOn){
 				AudioPlayer.isOn = !AudioPlayer.isOn;
-				AudioPlayer.playSound(Assets.menuTheme);
+				AudioPlayer.playSound(AudioAssets.menuTheme);
 			}
 		}else if (selection == 1){
 			Game.manageState(0);

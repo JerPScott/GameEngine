@@ -1,14 +1,20 @@
 package dev.canuk790.tilegame.entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
+import dev.canuk790.tilegame.audio.AudioAssets;
+import dev.canuk790.tilegame.audio.AudioPlayer;
 import dev.canuk790.tilegame.entities.Entity;
 import dev.canuk790.tilegame.zones.Zone;
 
 public abstract class Creature extends Entity{
 	
-	protected int health;
+	protected int health, speed;
+	protected File soundEffect;
+	protected boolean takingDamage;
 	protected float deltaX, deltaY; // for movement
 
 	public Creature(int x, int y, BufferedImage texture) {
@@ -16,6 +22,9 @@ public abstract class Creature extends Entity{
 		deltaX = 0;
 		deltaY = 0;
 		health = 10;
+		speed = 4; // speed must be a factor of 32
+		takingDamage = false;
+		soundEffect = null;
 	}
 	
 	@Override
@@ -23,17 +32,22 @@ public abstract class Creature extends Entity{
 		// update the texture depending on movement once key listener has implemented
 		// Note: Very happy with how this movement looks and feels
 		if (!(deltaX==0) || !(deltaY==0)){
-			x += Math.signum(deltaX)*4;
-			y += Math.signum(deltaY)*4;
+			x += Math.signum(deltaX)*speed;
+			y += Math.signum(deltaY)*speed;
 			
-			deltaX -= Math.signum(deltaX)*4;
-			deltaY -= Math.signum(deltaY)*4;
+			deltaX -= Math.signum(deltaX)*speed;
+			deltaY -= Math.signum(deltaY)*speed;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(texture, x, y, null);
+		if (takingDamage){
+			g.setColor(Color.RED);
+			g.fillRect(x, y, 28, 28);
+			takingDamage = false;
+		}
 		// x and y values from entity class (creature extends entity)
 	}
 	
@@ -59,11 +73,16 @@ public abstract class Creature extends Entity{
 			deltaY = 32;
 	}
 	
-	public abstract void attack(Creature target);
+	public void attack(Creature target, int damage){
+		target.takeDamage(damage);
+	}
 	
 	public void takeDamage(int damage){
 		//decrease the creatures health
 		this.health = this.health - damage;
+		this.takingDamage = true;
+		//could add in sound effect
+		AudioPlayer.playSound(soundEffect);
 	}
 	
 	public int getX(){
@@ -76,6 +95,10 @@ public abstract class Creature extends Entity{
 	
 	public int getHealth(){
 		return health;
+	}
+	
+	public void setHealth(int H){
+		health = H;
 	}
 	
 	public void setX(int playerX){

@@ -1,14 +1,10 @@
 package dev.canuk790.tilegame.gfx;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class Assets {
 	
 	private static final int width = 32, height = 32;
-	
-	/*Audio*/
-	public static File menuTheme;
 	
 	/*Images*/
 	
@@ -39,10 +35,6 @@ public class Assets {
 	public static BufferedImage[] font = new BufferedImage[48];
 	
 	public static void init(){
-		
-		/*Audio*/
-		
-		menuTheme = new File("res/audio/Menu_Theme_converted.wav").getAbsoluteFile();
 		
 		/*Images*/
 		
