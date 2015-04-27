@@ -16,16 +16,18 @@ public abstract class State {
 		return currentState;
 	}
 	
-	// on methods
+	// called when switching to state
 	public abstract void onOpen();
+	//called when leaving state
 	public abstract void onClose();
 	
-	// ticking and rendering
+	// called by main game loop on a cycle
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	
-	// input handling by states
+	// input handling passed to states by InputHandler
 	public abstract void inputSpace();
+	public abstract void inputEnter();
 	public abstract void inputLeft();
 	public abstract void inputRight();
 	public abstract void inputUp();

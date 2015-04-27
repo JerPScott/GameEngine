@@ -19,6 +19,11 @@ public class InputHandler implements KeyListener {
         	System.out.println("SPACEBAR");
         	State.getState().inputSpace();
         	break;
+        case KeyEvent.VK_ENTER:
+        	// call object methods that happen when key is pressed
+        	System.out.println("ENTER");
+        	State.getState().inputEnter();
+        	break;
         case KeyEvent.VK_LEFT:
         	// call object methods that happen when key is pressed
         	System.out.println("LEFT");

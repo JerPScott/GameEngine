@@ -94,6 +94,10 @@ public class MenuState extends State{
 	public void inputSpace() {
 		launchState(selection);
 	}
+	
+	@Override
+	public void inputEnter() {
+	}
 
 	@Override
 	public void inputLeft() {

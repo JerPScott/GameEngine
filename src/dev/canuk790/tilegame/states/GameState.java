@@ -7,6 +7,7 @@ public class GameState extends State{
 	public GameState(){
 	}
 	
+	
 	@Override
 	public void tick() {
 	}
@@ -14,7 +15,7 @@ public class GameState extends State{
 	@Override
 	public void render(Graphics g) {
 	}
-
+	
 	@Override
 	public void inputSpace() {
 	}
@@ -34,11 +35,15 @@ public class GameState extends State{
 	@Override
 	public void inputDown() {
 	}
+	
+	@Override
+	public void inputEnter() {
+	}
 
 	@Override
 	public void onOpen() {
 	}
-
+	
 	@Override
 	public void onClose() {
 	}
