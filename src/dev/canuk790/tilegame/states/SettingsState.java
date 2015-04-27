@@ -23,6 +23,7 @@ public class SettingsState extends State{
 	@Override
 	public void onOpen() {
 		AudioPlayer.playSound(AudioAssets.menuTheme);
+		selection = 0;
 	}
 	
 	public void onClose(){
@@ -40,48 +41,20 @@ public class SettingsState extends State{
 
 	@Override
 	public void render(Graphics g) {
-		// draw a grass background
-		for (int i = 0; i < 20; i++){
-			for (int k = 0; k < 15; k++){
-				g.drawImage(Assets.grassLight1, i*32, k*32, null);
-			}
-		}
-		// draw a tree border and player figure
-		if (wave){
-			for (int i = 0; i < 20; i++){
-				g.drawImage(Assets.playerLeft, 5*32, 2*32, null);
-				g.drawImage(Assets.treeRightDark, i*32, 0*32, null);
-				g.drawImage(Assets.treeRightDark, i*32, 14*32, null);
-				g.drawImage(Assets.treeLeftDark, 0*32, i*32, null);
-				g.drawImage(Assets.treeLeftDark, 19*32, i*32, null);
-			}
-		}else{
-			for (int i = 0; i < 20; i++){
-				g.drawImage(Assets.playerRight, 5*32, 2*32, null);
-				g.drawImage(Assets.treeLeftDark, i*32, 0*32, null);
-				g.drawImage(Assets.treeLeftDark, i*32, 14*32, null);
-				g.drawImage(Assets.treeRightDark, 0*32, i*32, null);
-				g.drawImage(Assets.treeRightDark, 19*32, i*32, null);
-			}
-		}
-		// NOT FINISHED YET MUST FINISH BUTTONS AND MAKE THEM HAVE AN ACTION
-		// ALSO IMPLEMENT THE SAME BLANK BUTTON WITH WRITING FOR THE MENU STATE
-		// draw the buttons 
-		MyButton.drawButton("Sound On/Off", g, 8*32, 7*32);
-		MyButton.drawButton("Menu", g, 8*32, 10*32);
+		// draw the buttons
+		MyButton.drawButton("Menu", g, 8*32, 7*32);
+		MyButton.drawButton("Sound", g, 8*32, 10*32);
 		// draw the coin to show which button is selected
-		if (selection == 1){
+		if (selection == 0){
 			g.drawImage(Assets.coinMoney, 6*32, 10*32, null);
 		}
-		if (selection == 0){
+		if (selection == 1){
 			g.drawImage(Assets.coinMoney, 6*32, 7*32, null);
 		}
-
 	}
 	
 	private void launchState(int selection){
 		// launch the state that is selected
-		// This method need more thought IM IN A RUSH
 		if (selection == 0){
 			if(AudioPlayer.isOn){
 				AudioPlayer.stopSound();
